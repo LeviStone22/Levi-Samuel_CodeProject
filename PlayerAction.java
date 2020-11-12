@@ -3,11 +3,11 @@
 
 public class PlayerAction 
 {
-    
+    boolean movement = true;
 
     public PlayerAction()
     {
-        boolean movement = true;
+       
     }
 
 
