@@ -32,6 +32,19 @@ public class Encounters
 // that the player will then encounter the boss.
     public void spiderEncounter()
     {
+
+        //  String encounterMSG = "";
+
+        //  encounterMSG += "================ Dungeon Spider ================";
+        //  encounterMSG += "\nYour HP: " + playerHealth;
+        //  encounterMSG += "\nSpider HP: " + spiderHealth;
+        //  encounterMSG += "\n\tWhat would you like to do?" 
+        //  encounterMSG += "\t1. Attack";
+        //  encounterMSG += "\t2. Drink a health potion";
+        //  encounterMSG += "\t3. Flee!";
+
+        //  return encounterMSG;
+        
         JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
         
         spiderHealth = 50;
@@ -42,9 +55,9 @@ public class Encounters
             JOptionPane.showInputDialog("Would you like to attack?").trim().toLowerCase();
             String input = attackOption;
 
-            if (attackOption == "yes")
+            if (attackOption == "yes") // if using the toString, change "yes" to "1"
             {
-                remainingHealth = spiderHealth - playerDMG;
+                remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
                 JOptionPane.showInputDialog("You attack the spider and it does 12 damage! The spider's health is now " + remainingHealth + ". Would you like to attack again?");
                 String input2 = attackOption;
             }
