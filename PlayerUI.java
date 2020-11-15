@@ -2,8 +2,8 @@ import javax.swing.JOptionPane;
 
 public class PlayerUI 
 {
-    int playerHealth = 100;
-    int playerDMG = 0;
+    int playerHealth;
+    int playerDMG;
 
 
     public PlayerUI()
@@ -23,10 +23,10 @@ public class PlayerUI
         return playerDMG;
     }
 
-    public getInventory() // question for erin, should we create the array list in here or in items and refer to it here (for the player's inventory)
-    {
+    // public getInventory() // question for erin, should we create the array list in here or in items and refer to it here (for the player's inventory)
+   // {
         
-    }
+    // }
 
 
 }

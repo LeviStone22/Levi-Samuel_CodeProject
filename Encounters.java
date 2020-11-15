@@ -1,26 +1,38 @@
 import javax.swing.JOptionPane;
 
 
-public class Encounters 
+public class Encounters // move all values to the constructor, keep all declarations inside of class
 {
-    int remainingHealth = 0;
-    int playerDMG = 12;
-    String attackOption = "";
-    String mobName = "";
-    int encounterNum = 0;
-    String encounterLoot = "";
+    int remainingHealth;
+    int playerDMG;
+    String attackOption;
+    String mobName;
+    int encounterNum;
+    String encounterLoot;
 
-    int spiderDMG = 0;
-    int spiderHealth = 0;
+    int spiderDMG;
+    int spiderHealth;
 
-    int skeletonDMG = 0;
-    int skeletonHealth = 0;
+    int skeletonDMG;
+    int skeletonHealth;
 
-    int bossDMG = 0;
-    int bossHealth = 0;
+    int bossDMG;
+    int bossHealth;
 
     public Encounters()
     {
+        bossHealth = 0;
+        bossDMG = 0;
+        skeletonDMG = 0;
+        skeletonHealth = 0;
+        spiderDMG = 0;
+        spiderHealth = 0;
+        encounterLoot = "";
+        encounterNum = 0;
+        mobName = "";
+        attackOption = "";
+        remainingHealth = 0;
+        playerDMG = 12;
         JOptionPane.showMessageDialog(null, "A " + mobName + " appears!");
     }
 
@@ -55,7 +67,7 @@ public class Encounters
             JOptionPane.showInputDialog("Would you like to attack?").trim().toLowerCase();
             String input = attackOption;
 
-            if (attackOption == "yes") // if using the toString, change "yes" to "1"
+            if (attackOption.equals("yes")) // if using the toString, change "yes" to "1"
             {
                 remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
                 JOptionPane.showInputDialog("You attack the spider and it does 12 damage! The spider's health is now " + remainingHealth + ". Would you like to attack again?");

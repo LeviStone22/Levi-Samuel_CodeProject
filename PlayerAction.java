@@ -3,11 +3,11 @@
 
 public class PlayerAction 
 {
-    boolean movement = true;
+    boolean movement;
 
     public PlayerAction()
     {
-       
+       movement = true;
     }
 
 
@@ -15,8 +15,9 @@ public class PlayerAction
     {
         int attackDamage = 0;
 
-        playerItem.getDamage();
+        weapon.getDamage();
 
+        // (spiderHealth || skeletonHealth) ?
         enemyHealth - playerItem.getDamage() = attackDamage;
 
         return attackDamage;
@@ -27,7 +28,7 @@ public class PlayerAction
     {
         int amountHealed = 0;
 
-        playerItem.getHealing();
+        potion.getHealing();
 
         playerHealth + playerItem.getHealing() = amountHealed;
 
