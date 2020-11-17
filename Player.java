@@ -20,7 +20,7 @@ public class Player
 
     public void addWeapon()
     {
-        weapon = new Item("Rusty Blade", 12, 0);
+        weapon = new Item("Thomas' Blade", 16, 0);
         inventory.add(weapon);
     }
 
@@ -34,7 +34,7 @@ public class Player
     {
         String inventoryStock = "";
         inventoryStock += "~-~-~-~-~ Thomas' Inventory ~-~-~-~-~\n";
-        inventoryStock += "There are " + inventory.size() + " items in your inventory.";
+        inventoryStock += "There are " + inventory.size() + " items in your inventory.\n\n";
 
         for(Item item : inventory)
         {

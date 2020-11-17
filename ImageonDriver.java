@@ -5,14 +5,16 @@ import javax.swing.JOptionPane;
 public class ImageonDriver 
 {
     private static Encounters spiderEncounter;
-    private static Player player;
+    private static Player player = new Player(100, 12);
 
     public static void main(String[] args) 
     {
-        JOptionPane.showMessageDialog(null, "Welcome to Imageon. \nA text based adventure game by Levi Walker and Samuel Pinnex.");
+        JOptionPane.showMessageDialog(null, "Welcome to Imageon. \n\nA text based adventure game by Levi Walker and Samuel Pinnex.");
         
-        JOptionPane.showMessageDialog(null, "As a child, Thomas Stone was a very creative boy. \nHis imagination took him to rocky cliffs, undersea coral reefs, and sprawling dungeons with luxuries to discover. \nOur adventure today, takes us to the latter.");
+        JOptionPane.showMessageDialog(null, "As a child, Thomas Stone was a very creative boy. \n\nHis imagination took him to rocky cliffs, undersea coral reefs, and sprawling dungeons with luxuries to discover. \n\nOur adventure today, takes us to the latter.");
         
+        JOptionPane.showMessageDialog(null, "While drinking a Capri Sun, Thomas looked at the ground and picked up a stick. \n\nThis stick would be his sword, and his beverage his potion. \n\nThomas closed his eyes and took a deep breath. When he opened them, he was inside his Imageon.");
+
         int menuOption = 0;
         do
         {
@@ -20,7 +22,7 @@ public class ImageonDriver
             menuSelection(menuOption);
         } while (menuOption != 0);
 
-        player = new Player(100, 12);
+        
 
         player.addWeapon();
         player.addPotion();

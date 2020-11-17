@@ -57,7 +57,7 @@ public class Encounters // move all values to the constructor, keep all declarat
 
         JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
         
-        spiderHealth = 50;
+        spiderHealth = 48;
         spiderDMG = 6;
 
         do

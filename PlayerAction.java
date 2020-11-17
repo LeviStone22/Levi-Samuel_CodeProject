@@ -16,18 +16,18 @@ public class PlayerAction
     public int playerAttack() // do what we did with playerHealing() as we did here
     {
         int attackDamage = 0;
-        int spiderHealth = 50;
+        int spiderHealth = 48;
 
-        weaponDMG = 12;
+        weaponDMG = 16;
 
-        // (spiderHealth || skeletonHealth) ?
+        
         attackDamage = spiderHealth - weaponDMG;
 
         return attackDamage;
     }
 
 
-    public int playerHealing()
+    public int playerHealing() // maybe add an if-statement for validation that ensures that health cannot go over 100
     {
         potionHealing = 40;
 
