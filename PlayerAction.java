@@ -4,6 +4,8 @@
 public class PlayerAction 
 {
     boolean movement;
+    int weaponDMG;
+    int potionHealing;
 
     public PlayerAction()
     {
@@ -11,14 +13,15 @@ public class PlayerAction
     }
 
 
-    public int playerAttack()
+    public int playerAttack() // do what we did with playerHealing() as we did here
     {
         int attackDamage = 0;
+        int spiderHealth = 50;
 
-        weapon.getDamage();
+        weaponDMG = 12;
 
         // (spiderHealth || skeletonHealth) ?
-        enemyHealth - playerItem.getDamage() = attackDamage;
+        attackDamage = spiderHealth - weaponDMG;
 
         return attackDamage;
     }
@@ -26,19 +29,15 @@ public class PlayerAction
 
     public int playerHealing()
     {
-        int amountHealed = 0;
+        potionHealing = 40;
 
-        potion.getHealing();
-
-        playerHealth + playerItem.getHealing() = amountHealed;
-
-        return amountHealed;
+        return potionHealing;
     }
     
 
-    public boolean playerFlee()
-    {
+    // public boolean playerFlee()
+    // {
         
-    }
+    // }
 
 }

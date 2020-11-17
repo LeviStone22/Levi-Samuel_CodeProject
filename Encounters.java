@@ -6,9 +6,7 @@ public class Encounters // move all values to the constructor, keep all declarat
     int remainingHealth;
     int playerDMG;
     String attackOption;
-    String mobName;
     int encounterNum;
-    String encounterLoot;
 
     int spiderDMG;
     int spiderHealth;
@@ -27,13 +25,10 @@ public class Encounters // move all values to the constructor, keep all declarat
         skeletonHealth = 0;
         spiderDMG = 0;
         spiderHealth = 0;
-        encounterLoot = "";
         encounterNum = 0;
-        mobName = "";
         attackOption = "";
         remainingHealth = 0;
         playerDMG = 12;
-        JOptionPane.showMessageDialog(null, "A " + mobName + " appears!");
     }
 
 
@@ -57,6 +52,9 @@ public class Encounters // move all values to the constructor, keep all declarat
 
         //  return encounterMSG;
         
+        // We can make a switch statement inside of this encounter method, and in the switch statement, for instance "Flee" we can use JOptionPane, and 
+        // then we can call the "move to next room method"
+
         JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
         
         spiderHealth = 50;
