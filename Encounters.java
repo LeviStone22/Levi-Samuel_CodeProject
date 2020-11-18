@@ -3,19 +3,19 @@ import javax.swing.JOptionPane;
 
 public class Encounters // move all values to the constructor, keep all declarations inside of class
 {
-    int remainingHealth;
-    int playerDMG;
-    String attackOption;
-    int encounterNum;
+    private int remainingHealth;
+    private int playerDMG;
+    private String attackOption;
+    private int encounterNum;
 
-    int spiderDMG;
-    int spiderHealth;
+    private int spiderDMG;
+    private int spiderHealth;
 
-    int skeletonDMG;
-    int skeletonHealth;
+    private int skeletonDMG;
+    private int skeletonHealth;
 
-    int bossDMG;
-    int bossHealth;
+    private int bossDMG;
+    private int bossHealth;
 
     public Encounters()
     {
@@ -23,12 +23,12 @@ public class Encounters // move all values to the constructor, keep all declarat
         bossDMG = 0;
         skeletonDMG = 0;
         skeletonHealth = 0;
-        spiderDMG = 0;
-        spiderHealth = 0;
+        spiderDMG = 6;
+        spiderHealth = 48;
         encounterNum = 0;
         attackOption = "";
         remainingHealth = 0;
-        playerDMG = 12;
+        playerDMG = 16;
     }
 
 
@@ -39,40 +39,59 @@ public class Encounters // move all values to the constructor, keep all declarat
 // that the player will then encounter the boss.
     public void spiderEncounter()
     {
-
-        //  String encounterMSG = "";
-
-        //  encounterMSG += "================ Dungeon Spider ================";
-        //  encounterMSG += "\nYour HP: " + playerHealth;
-        //  encounterMSG += "\nSpider HP: " + spiderHealth;
-        //  encounterMSG += "\n\tWhat would you like to do?" 
-        //  encounterMSG += "\t1. Attack";
-        //  encounterMSG += "\t2. Drink a health potion";
-        //  encounterMSG += "\t3. Flee!";
-
-        //  return encounterMSG;
         
         // We can make a switch statement inside of this encounter method, and in the switch statement, for instance "Flee" we can use JOptionPane, and 
         // then we can call the "move to next room method"
 
         JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
-        
+
         spiderHealth = 48;
         spiderDMG = 6;
 
-        do
+    do
+    {
+        String input = JOptionPane.showInputDialog(spiderToString().trim());
+
+        if (input.equals("1"))
         {
-            JOptionPane.showInputDialog("Would you like to attack?").trim().toLowerCase();
-            String input = attackOption;
-
-            if (attackOption.equals("yes")) // if using the toString, change "yes" to "1"
+            remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+            JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\n The spider's health is now " + remainingHealth + "."); 
+            JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\n Your health drops to "); // HOW TO DO THE HEALTH DROP HERE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        }                                                                                                              // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        else if (input.equals("2"))
+        {
+            String input2 = JOptionPane.showInputDialog("Are you sure you want to run away?").trim().toLowerCase();
+            if (input2.equals("yes"))
             {
-                remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
-                JOptionPane.showInputDialog("You attack the spider and it does 12 damage! The spider's health is now " + remainingHealth + ". Would you like to attack again?");
-                String input2 = attackOption;
+                JOptionPane.showMessageDialog(null, "Thomas ran away from the battle.");
             }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Thomas chose not to run away.");
+                input = JOptionPane.showInputDialog(spiderToString().trim());
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Invalid Input, Thomas. You must enter either 1 or 2 into the input dialog box.");  
+            input = JOptionPane.showInputDialog(spiderToString().trim());
+        }
+    } while (remainingHealth > 0); // ASK ERIN WHY THE or || statement DOES NOT WORK HERE. <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-        } while (spiderHealth > 0);
+        
+        // do
+        // {
+        //     JOptionPane.showInputDialog("Would you like to attack?").trim().toLowerCase();
+        //     String input = attackOption;
+
+        //     if (attackOption.equals("yes")) // if using the toString, change "yes" to "1"
+        //     {
+        //         remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        //         JOptionPane.showInputDialog("You attack the spider and it does 12 damage! The spider's health is now " + remainingHealth + ". Would you like to attack again?");
+        //         String input2 = attackOption;
+        //     }
+
+        // } while (spiderHealth > 0);
     }
 
     public void skeletonEncounter()
@@ -82,6 +101,21 @@ public class Encounters // move all values to the constructor, keep all declarat
         skeletonHealth = 35;
         skeletonDMG = 10;
 
+    }
+
+
+    public String spiderToString()
+    {
+        String encounterMSG = "";
+
+        encounterMSG += "================ Dungeon Spider ================\n";
+        encounterMSG += "\nSpider HP: " + spiderHealth + "\n"; // ASK ERIN HOW TO UPDATE THIS VALUE AS THE BATTLE GOES ON<<<<<<<<<<<<<<<<<<
+        encounterMSG += "\n\tWhat would you like to do?\n"; 
+        encounterMSG += "\t1. Attack!\n";
+        // encounterMSG += "\t2. Drink a health potion\n";
+        encounterMSG += "\t2. Flee...\n";
+
+        return encounterMSG;
     }
 
 }
