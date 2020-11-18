@@ -1,11 +1,15 @@
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.JOptionPane;
+import java.util.Random;
 
 
 
 public class ImageonDriver 
 {
     private static Encounters spiderEncounter;
+    private static Encounters skeletonEncounter;
     private static Player player = new Player(100, 12);
+    private static Random randy;
 
     public static void main(String[] args) 
     {
@@ -54,8 +58,19 @@ public class ImageonDriver
         switch(menuOption) 
         {
             case 1:
+            randy = new Random();
+            int num = randy.nextInt(2);
+    
+            if(num == 0)
+            {
                 spiderEncounter = new Encounters();
                 spiderEncounter.spiderEncounter();
+            }
+            else
+            {
+                skeletonEncounter = new Encounters();
+                skeletonEncounter.skeletonEncounter();
+            } 
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, player.showInventory(), "~INVENTORY~", JOptionPane.PLAIN_MESSAGE); 
