@@ -42,10 +42,10 @@ public class Encounters // move all values to the constructor, keep all declarat
         // We can make a switch statement inside of this encounter method, and in the switch statement, for instance "Flee" we can use JOptionPane, and 
         // then we can call the "move to next room method"
 
-            JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
+        JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
 
-            spiderHealth = 48;
-            spiderDMG = 6;
+        spiderHealth = 48;
+        spiderDMG = 6;
 
             do
             {
@@ -53,10 +53,8 @@ public class Encounters // move all values to the constructor, keep all declarat
 
                 if (input.equals("1"))
                 {
-                    remainingHealth = spiderHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
-                    JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\n The spider's health is now " + remainingHealth + "."); 
-                    JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\n Your health drops to "); // HOW TO DO THE HEALTH DROP HERE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                }                                                                                                              // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+                   spiderHasBeenAttacked();
+                }                                                                                                              
                 else if (input.equals("2"))
                 {
                     String input2 = JOptionPane.showInputDialog("Are you sure you want to run away?").trim().toLowerCase();
@@ -106,10 +104,8 @@ public class Encounters // move all values to the constructor, keep all declarat
 
                 if (input.equals("1"))
                 {
-                    remainingHealth = skeletonHealth - playerDMG; // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
-                    JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\n The skeleton's health is now " + remainingHealth + "."); 
-                    JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 6 damage!\n Your health drops to "); // HOW TO DO THE HEALTH DROP HERE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                }                                                                                                              // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+                    skeletonHasBeenAttacked();
+                }                                                                                                              
                 else if (input.equals("2"))
                 {
                     String input2 = JOptionPane.showInputDialog("Are you sure you want to run away?").trim().toLowerCase();
@@ -120,13 +116,13 @@ public class Encounters // move all values to the constructor, keep all declarat
                     else
                     {
                         JOptionPane.showMessageDialog(null, "Thomas chose not to run away.");
-                        input = JOptionPane.showInputDialog(spiderToString().trim());
+                        input = JOptionPane.showInputDialog(skeletonToString().trim());
                     }
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(null, "Invalid Input, Thomas. You must enter either 1 or 2 into the input dialog box.");  
-                    input = JOptionPane.showInputDialog(spiderToString().trim());
+                    input = JOptionPane.showInputDialog(skeletonToString().trim());
                 }
             } while (remainingHealth > 0);
 
@@ -138,7 +134,7 @@ public class Encounters // move all values to the constructor, keep all declarat
         String encounterMSG = "";
 
         encounterMSG += "================ Dungeon Spider ================\n";
-        encounterMSG += "\nSpider HP: " + spiderHealth + "\n"; // ASK ERIN HOW TO UPDATE THIS VALUE AS THE BATTLE GOES ON<<<<<<<<<<<<<<<<<<
+        encounterMSG += "\nSpider HP: " + spiderHealth + "\n";
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
@@ -152,7 +148,7 @@ public class Encounters // move all values to the constructor, keep all declarat
         String encounterMSG = "";
 
         encounterMSG += "================ Wretched Skeleton ================\n";
-        encounterMSG += "\nSkeleton HP: " + skeletonHealth + "\n"; // ASK ERIN HOW TO UPDATE THIS VALUE AS THE BATTLE GOES ON<<<<<<<<<<<<<<<<<<
+        encounterMSG += "\nSkeleton HP: " + skeletonHealth + "\n";
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
@@ -161,4 +157,48 @@ public class Encounters // move all values to the constructor, keep all declarat
         return encounterMSG;
     }
 
+
+    public void skeletonHasBeenAttacked()
+    {
+        skeletonHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + "."); 
+        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 6 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+
+        if (remainingHealth <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "Thomas has defeated the wretched skeleton!");
+        }
+    }
+
+    public void spiderHasBeenAttacked()
+    {
+        spiderHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + "."); 
+        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+
+        if (remainingHealth <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "Thomas has slain the dungeon spider!");
+        }
+    }
+
+    public int skeletonHealthDrop()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingHealth = skeletonHealth -= playerDMG;
+        }
+
+        return remainingHealth;
+    }
+
+    public int spiderHealthDrop()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingHealth = spiderHealth -= playerDMG;
+        }
+
+        return remainingHealth;
+    }
 }

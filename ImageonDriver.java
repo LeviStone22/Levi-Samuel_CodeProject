@@ -1,8 +1,7 @@
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.JOptionPane;
 import java.util.Random;
 
-
+// ask Erin how to change the health during battle (in the toString for spider/skeleton)
 
 public class ImageonDriver 
 {
@@ -64,7 +63,7 @@ public class ImageonDriver
             if(num == 0)
             {
                 spiderEncounter = new Encounters();
-                spiderEncounter.spiderEncounter();
+                spiderEncounter.spiderEncounter(); // after 3 encounters, the boss is triggered. figure this out and we are home free more or less
             }
             else
             {
