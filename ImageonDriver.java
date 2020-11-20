@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class ImageonDriver 
 {
-    private static Encounters spiderEncounter;
-    private static Encounters skeletonEncounter;
+    private static Encounters spiderEncounter = new Encounters();
+    private static Encounters skeletonEncounter = new Encounters();
     private static Player player = new Player(100, 12);
     private static Random randy;
 
@@ -25,16 +25,9 @@ public class ImageonDriver
             menuSelection(menuOption);
         } while (menuOption != 0);
 
-        
-
         player.addWeapon();
         player.addPotion();
 
-        // make RNG that randomly chooses skeleton or spider encounter occur
-        // make switch statement, i.e. 1 will call the movement method, 2 will call the attack method, etc
-        
-
-        
         System.exit(0);
     }
 
@@ -62,17 +55,16 @@ public class ImageonDriver
     
             if(num == 0)
             {
-                spiderEncounter = new Encounters();
                 spiderEncounter.spiderEncounter(); // after 3 encounters, the boss is triggered. figure this out and we are home free more or less
             }
             else
             {
-                skeletonEncounter = new Encounters();
                 skeletonEncounter.skeletonEncounter();
             } 
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, player.showInventory(), "~INVENTORY~", JOptionPane.PLAIN_MESSAGE); 
+                JOptionPane.showMessageDialog(null, "Your total damage is " + player.getTotalDamage() + ".");
                 break;
             case 0:
                 goodbyeExit();
@@ -89,9 +81,11 @@ public class ImageonDriver
         JOptionPane.showMessageDialog(null, "Until next time, Thomas...");
     }
 
+
     public static void error()
     {
         JOptionPane.showMessageDialog(null, "Invalid input from player. Please retry.", "Try again, Thomas.", JOptionPane.ERROR_MESSAGE);
     }
+
 
 }

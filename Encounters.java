@@ -5,8 +5,6 @@ public class Encounters // move all values to the constructor, keep all declarat
 {
     private int remainingHealth;
     private int playerDMG;
-    private String attackOption;
-    private int encounterNum;
 
     private int spiderDMG;
     private int spiderHealth;
@@ -16,19 +14,19 @@ public class Encounters // move all values to the constructor, keep all declarat
 
     private int bossDMG;
     private int bossHealth;
+    private int bossNum = 0;
 
     public Encounters()
     {
-        bossHealth = 0;
-        bossDMG = 0;
-        skeletonDMG = 0;
-        skeletonHealth = 0;
+        bossHealth = 80;
+        bossDMG = 14;
+        skeletonDMG = 10;
+        skeletonHealth = 35;
         spiderDMG = 6;
         spiderHealth = 48;
-        encounterNum = 0;
-        attackOption = "";
         remainingHealth = 0;
         playerDMG = 16;
+
     }
 
 
@@ -75,6 +73,7 @@ public class Encounters // move all values to the constructor, keep all declarat
                 }
             } while (remainingHealth > 0); // ASK ERIN WHY THE or || statement DOES NOT WORK HERE. <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+        bossCounter();
 
                 // do
                 // {
@@ -126,6 +125,47 @@ public class Encounters // move all values to the constructor, keep all declarat
                 }
             } while (remainingHealth > 0);
 
+        bossCounter();
+    }
+
+    public void bossEncounter()
+    {
+
+        JOptionPane.showMessageDialog(null, "You have encountered the treasure dragon!");
+        JOptionPane.showMessageDialog(null, "The room that awaits you presents a mighty dragon...\n who sits upon a large mountain of golden luxuries!");
+        JOptionPane.showMessageDialog(null, "Good luck, Thomas!");
+        
+        bossHealth = 80;
+        bossDMG = 14;
+
+            do
+            {
+                String input = JOptionPane.showInputDialog(bossToString().trim());
+
+                if (input.equals("1"))
+                {
+                    bossHasBeenAttacked();
+                }                                                                                                              
+                else if (input.equals("2"))
+                {
+                    String input2 = JOptionPane.showInputDialog("Are you sure you want to run away?").trim().toLowerCase();
+                    if (input2.equals("yes"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Thomas ran away from the battle.");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Thomas chose not to run away.");
+                        input = JOptionPane.showInputDialog(bossToString().trim());
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Invalid Input, Thomas. You must enter either 1 or 2 into the input dialog box.");  
+                    input = JOptionPane.showInputDialog(bossToString().trim());
+                }
+            } while (remainingHealth > 0);
+
     }
 
 
@@ -149,6 +189,20 @@ public class Encounters // move all values to the constructor, keep all declarat
 
         encounterMSG += "================ Wretched Skeleton ================\n";
         encounterMSG += "\nSkeleton HP: " + skeletonHealth + "\n";
+        encounterMSG += "\n\tWhat would you like to do?\n"; 
+        encounterMSG += "\t1. Attack!\n";
+        // encounterMSG += "\t2. Drink a health potion\n";
+        encounterMSG += "\t2. Flee...\n";
+
+        return encounterMSG;
+    }
+
+    public String bossToString()
+    {
+        String encounterMSG = "";
+
+        encounterMSG += "================ Treasure Dragon ================\n";
+        encounterMSG += "\nDragon HP: " + bossHealth + "\n";
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
@@ -182,6 +236,21 @@ public class Encounters // move all values to the constructor, keep all declarat
         }
     }
 
+    public void bossHasBeenAttacked()
+    {
+        bossHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + "."); 
+        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+
+        if (remainingHealth <= 0)
+        {
+            JOptionPane.showMessageDialog(null, "Thomas has slain the treasure dragon!\nThomas has triumphed over his Imageon.");
+            JOptionPane.showMessageDialog(null, "Until next time, Thomas Stone...");
+
+            System.exit(0);
+        }
+    }
+
     public int skeletonHealthDrop()
     {
         for(int i = 0; i < 1; i++)
@@ -201,4 +270,31 @@ public class Encounters // move all values to the constructor, keep all declarat
 
         return remainingHealth;
     }
+
+    public int bossHealthDrop()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingHealth = bossHealth -= playerDMG;
+        }
+
+        return remainingHealth;
+    }
+
+
+    public int bossCounter()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           bossNum++;
+        }
+
+        if(bossNum == 3)
+        {
+            bossEncounter();
+        }
+
+        return bossNum;
+    }
+    
 }

@@ -49,6 +49,19 @@ public class Player
     {
         playerHealth += paction.playerHealing();
     }
+    
+
+    public int getTotalDamage()
+    {
+        int msg = 0;
+
+        for(Item item : inventory)
+        {
+            msg += item.getDamage();
+        }
+
+        return msg;
+    }
 
 
 
