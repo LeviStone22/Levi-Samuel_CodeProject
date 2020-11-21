@@ -23,11 +23,6 @@ public class PlayerUI
         return playerDMG;
     }
 
-    // public getInventory() // question for erin, should we create the array list in here or in items and refer to it here (for the player's inventory)
-   // {
-        
-    // }
-
 
 }
 

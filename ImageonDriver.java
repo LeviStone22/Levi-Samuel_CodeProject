@@ -7,7 +7,7 @@ public class ImageonDriver
 {
     private static Encounters spiderEncounter = new Encounters();
     private static Encounters skeletonEncounter = new Encounters();
-    private static Player player = new Player(100, 12);
+    private static Player player = new Player();
     private static Random randy;
 
     public static void main(String[] args) 
@@ -55,11 +55,13 @@ public class ImageonDriver
     
             if(num == 0)
             {
-                spiderEncounter.spiderEncounter(); // after 3 encounters, the boss is triggered. figure this out and we are home free more or less
+                int remPlayerHealth = spiderEncounter.spiderEncounter(player.getPlayerHealth()); // after 3 encounters, the boss is triggered.
+                player.setPlayerHealth(remPlayerHealth);
             }
             else
             {
-                skeletonEncounter.skeletonEncounter();
+                int remPlayerHealth = skeletonEncounter.skeletonEncounter(player.getPlayerHealth());
+                player.setPlayerHealth(remPlayerHealth);
             } 
                 break;
             case 2:

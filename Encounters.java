@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 public class Encounters // move all values to the constructor, keep all declarations inside of class
 {
     private int remainingHealth;
+    private int remainingPlayerHealth;
     private int playerDMG;
 
     private int spiderDMG;
@@ -25,20 +26,13 @@ public class Encounters // move all values to the constructor, keep all declarat
         spiderDMG = 6;
         spiderHealth = 48;
         remainingHealth = 0;
+        remainingPlayerHealth = 0;
         playerDMG = 16;
-
     }
 
 
-// in a future if statement, we will call one of these encounter methods via a random generator
-// i.e. if the random generator generates 2, then we will call this spiderEncounter method, if it 
-// generates a 1, we could call the skeletonEncounter method, and we can make a do while loop around
-// that if statement to ensure that after a pre-determined amount of encounters with spiders and skeletons
-// that the player will then encounter the boss.
-    public void spiderEncounter()
+    public int spiderEncounter(int playerHealth)
     {
-        // We can make a switch statement inside of this encounter method, and in the switch statement, for instance "Flee" we can use JOptionPane, and 
-        // then we can call the "move to next room method"
 
         JOptionPane.showMessageDialog(null, "You have encountered a dungeon spider!");
 
@@ -51,7 +45,7 @@ public class Encounters // move all values to the constructor, keep all declarat
 
                 if (input.equals("1"))
                 {
-                   spiderHasBeenAttacked();
+                   spiderHasBeenAttacked(playerHealth);
                 }                                                                                                              
                 else if (input.equals("2"))
                 {
@@ -71,9 +65,11 @@ public class Encounters // move all values to the constructor, keep all declarat
                     JOptionPane.showMessageDialog(null, "Invalid Input, Thomas. You must enter either 1 or 2 into the input dialog box.");  
                     input = JOptionPane.showInputDialog(spiderToString().trim());
                 }
-            } while (remainingHealth > 0); // ASK ERIN WHY THE or || statement DOES NOT WORK HERE. <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            } while (remainingHealth > 0);
 
-        bossCounter();
+        bossCounter(playerHealth);
+
+        return playerHealth;
 
                 // do
                 // {
@@ -90,7 +86,7 @@ public class Encounters // move all values to the constructor, keep all declarat
                 // } while (spiderHealth > 0);
     }
 
-    public void skeletonEncounter()
+    public int skeletonEncounter(int playerHealth)
     {
         JOptionPane.showMessageDialog(null, "You have encountered a wretched skeleton!");
         
@@ -103,7 +99,7 @@ public class Encounters // move all values to the constructor, keep all declarat
 
                 if (input.equals("1"))
                 {
-                    skeletonHasBeenAttacked();
+                    skeletonHasBeenAttacked(playerHealth);
                 }                                                                                                              
                 else if (input.equals("2"))
                 {
@@ -125,10 +121,12 @@ public class Encounters // move all values to the constructor, keep all declarat
                 }
             } while (remainingHealth > 0);
 
-        bossCounter();
+        bossCounter(playerHealth);
+
+        return playerHealth;
     }
 
-    public void bossEncounter()
+    public int bossEncounter(int playerHealth)
     {
 
         JOptionPane.showMessageDialog(null, "You have encountered the treasure dragon!");
@@ -144,7 +142,7 @@ public class Encounters // move all values to the constructor, keep all declarat
 
                 if (input.equals("1"))
                 {
-                    bossHasBeenAttacked();
+                    bossHasBeenAttacked(playerHealth);
                 }                                                                                                              
                 else if (input.equals("2"))
                 {
@@ -166,6 +164,7 @@ public class Encounters // move all values to the constructor, keep all declarat
                 }
             } while (remainingHealth > 0);
 
+        return playerHealth;
     }
 
 
@@ -211,12 +210,12 @@ public class Encounters // move all values to the constructor, keep all declarat
         return encounterMSG;
     }
 
-
-    public void skeletonHasBeenAttacked()
+    
+    public void skeletonHasBeenAttacked(int playerHealth)
     {
         skeletonHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 6 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 6 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
 
         if (remainingHealth <= 0)
         {
@@ -224,11 +223,11 @@ public class Encounters // move all values to the constructor, keep all declarat
         }
     }
 
-    public void spiderHasBeenAttacked()
+    public void spiderHasBeenAttacked(int playerHealth)
     {
         spiderHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
 
         if (remainingHealth <= 0)
         {
@@ -236,11 +235,11 @@ public class Encounters // move all values to the constructor, keep all declarat
         }
     }
 
-    public void bossHasBeenAttacked()
+    public void bossHasBeenAttacked(int playerHealth)
     {
         bossHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to "); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
 
         if (remainingHealth <= 0)
         {
@@ -249,6 +248,36 @@ public class Encounters // move all values to the constructor, keep all declarat
 
             System.exit(0);
         }
+    }
+
+    public int playerSpiderHealthDrop(int playerHealth)
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingPlayerHealth = playerHealth -= spiderDMG;
+        }
+
+        return remainingPlayerHealth;
+    }
+
+    public int playerSkeletonHealthDrop(int playerHealth)
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingPlayerHealth = playerHealth -= skeletonDMG;
+        }
+
+        return remainingPlayerHealth;
+    }
+
+    public int playerBossHealthDrop(int playerHealth)
+    {
+        for(int i = 0; i < 1; i++)
+        {
+           remainingPlayerHealth = playerHealth -= bossDMG;
+        }
+
+        return remainingPlayerHealth;
     }
 
     public int skeletonHealthDrop()
@@ -282,7 +311,7 @@ public class Encounters // move all values to the constructor, keep all declarat
     }
 
 
-    public int bossCounter()
+    public int bossCounter(int playerHealth)
     {
         for(int i = 0; i < 1; i++)
         {
@@ -291,7 +320,7 @@ public class Encounters // move all values to the constructor, keep all declarat
 
         if(bossNum == 3)
         {
-            bossEncounter();
+            bossEncounter(playerHealth);
         }
 
         return bossNum;

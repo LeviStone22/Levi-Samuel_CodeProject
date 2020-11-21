@@ -9,8 +9,10 @@ public class Player
     private Item potion;
     private PlayerAction paction;
 
-    public Player(int playerHealth, int playerDMG)
+    public Player()
     {
+        playerHealth = 100;
+        playerDMG = 16;
         inventory = new ArrayList<>();
         addWeapon();
         addPotion();
@@ -63,6 +65,14 @@ public class Player
         return msg;
     }
 
+    public int getPlayerHealth()
+    {
+        return playerHealth;
+    }
 
+    public void setPlayerHealth(int playerHealth) 
+    {
+        this.playerHealth = playerHealth;
+    }
 
 }

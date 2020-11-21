@@ -27,7 +27,7 @@ public class PlayerAction
     }
 
 
-    public int playerHealing() // maybe add an if-statement for validation that ensures that health cannot go over 100
+    public int playerHealing()
     {
         potionHealing = 40;
 
