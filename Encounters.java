@@ -26,6 +26,7 @@ public class Encounters
     private int remainingHealth; // declares remainingHealth as an int type variable
     private int remainingPlayerHealth; // declares remainingPlayerHealth as an int type variable
     private int playerDMG; // declares playerDMG as an int type variable
+    private int playerHealth;
 
     private int spiderDMG; // declares spiderDMG as an int type variable
     private int spiderHealth; // declares spiderHealth as an int type variable
@@ -48,14 +49,15 @@ public class Encounters
     public Encounters()
     {
         bossHealth = 80; // defines bossHealth as 80
-        bossDMG = 14; // defines bossDMG as 14
-        skeletonDMG = 10; // defines skeletonDMG as 10
+        bossDMG = 10; // defines bossDMG as 10
+        skeletonDMG = 7; // defines skeletonDMG as 7
         skeletonHealth = 35; // defines skeletonHealth as 35
         spiderDMG = 6; // defines spiderDMG as 6
         spiderHealth = 48; // defines spiderHealth as 48
         remainingHealth = 0; // defines remainingHealth as 0
         remainingPlayerHealth = 0; // defines remainingPlayerHealth as 0
         playerDMG = 16; // defines playerDMG as 16
+        playerHealth = 100;
     }
 
 
@@ -150,7 +152,7 @@ public class Encounters
         JOptionPane.showMessageDialog(null, "You have encountered a wretched skeleton!"); // intro prompt/message of encounter
         
         skeletonHealth = 35; // while initially redundant, this is necessary to allow this encounter to work without issues. defines skeleton health as 35
-        skeletonDMG = 10; // the description from the above comment applies here as well. defines skeletonDMG as 10
+        skeletonDMG = 7; // the description from the above comment applies here as well. defines skeletonDMG as 7
 
             do // do-while loop that runs the battle menu as long as the skeleton's health is greater than 0
             {
@@ -204,12 +206,12 @@ public class Encounters
     public int bossEncounter(int playerHealth)
     {
 
-        JOptionPane.showMessageDialog(null, "You have encountered the treasure dragon!");
-        JOptionPane.showMessageDialog(null, "The room that awaits you presents a mighty dragon...\n who sits upon a large mountain of golden luxuries!");
-        JOptionPane.showMessageDialog(null, "Good luck, Thomas!");
+        JOptionPane.showMessageDialog(null, "You have encountered the treasure dragon!"); // intro prompt/message of encounter
+        JOptionPane.showMessageDialog(null, "The room that awaits you presents a mighty dragon...\n who sits upon a large mountain of golden luxuries!"); // second prompt
+        JOptionPane.showMessageDialog(null, "Good luck, Thomas!"); // you'll need it!
         
-        bossHealth = 80;
-        bossDMG = 14;
+        bossHealth = 80; // defines bossHealth as 80
+        bossDMG = 10; // defines bossDMG as 10
 
             do // do-while loop that runs the battle menu as long as the dragon's health is greater than 0
             {
@@ -288,9 +290,9 @@ public class Encounters
     
     public void skeletonHasBeenAttacked(int playerHealth)
     {
-        skeletonHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        skeletonHealthDrop();
         JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 10 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + ".");
+        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 7 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + ".");
 
         if (remainingHealth <= 0)
         {
@@ -300,7 +302,7 @@ public class Encounters
 
     public void spiderHasBeenAttacked(int playerHealth)
     {
-        spiderHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        spiderHealthDrop();
         JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + "."); 
         JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + ".");
 
@@ -312,16 +314,16 @@ public class Encounters
 
     public void bossHasBeenAttacked(int playerHealth)
     {
-        bossHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
+        bossHealthDrop();
         JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + ".");
+        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 10 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + ".");
 
         if (remainingHealth <= 0)
         {
             JOptionPane.showMessageDialog(null, "Thomas has slain the treasure dragon!\nThomas has triumphed over his Imageon.");
             JOptionPane.showMessageDialog(null, "Until next time, Thomas Stone...");
 
-            System.exit(0);
+            System.exit(0); // exits the program
         }
     }
 
@@ -329,7 +331,7 @@ public class Encounters
     {
         for(int i = 0; i < 1; i++)
         {
-           remainingPlayerHealth = playerHealth -= spiderDMG;
+           remainingPlayerHealth = this.playerHealth -= spiderDMG;
         }
 
         return remainingPlayerHealth;
@@ -339,7 +341,7 @@ public class Encounters
     {
         for(int i = 0; i < 1; i++)
         {
-           remainingPlayerHealth = playerHealth -= skeletonDMG;
+           remainingPlayerHealth = this.playerHealth -= skeletonDMG;
         }
 
         return remainingPlayerHealth;
@@ -349,7 +351,7 @@ public class Encounters
     {
         for(int i = 0; i < 1; i++)
         {
-           remainingPlayerHealth = playerHealth -= bossDMG;
+           remainingPlayerHealth = this.playerHealth -= bossDMG;
         }
 
         return remainingPlayerHealth;

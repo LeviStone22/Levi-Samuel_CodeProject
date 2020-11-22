@@ -28,7 +28,7 @@ public class ImageonDriver
         player.addWeapon();
         player.addPotion();
 
-        System.exit(0);
+        System.exit(0); // exits the program
     }
 
     public static int displayMenu() 
@@ -44,46 +44,75 @@ public class ImageonDriver
 
     }
 
+
+    /**
+     * This method hosts the main menu of the game, and serves to redirect the player to different methods depending on
+     * what they enter in the input dialog boxes while interacting with the program. There is an if statement that 
+     * utilizes the random generator that is also housed here, and together they operate to randomly select one of 
+     * the two mob encounters. They accept the health variables of the player as parameters. The menu method itself
+     * accepts the integer associated with menuOption as the parameter, in order to accurately operate according 
+     * to the player's choices.
+     * 
+     * Created by Levi Walker, Samuel Pinnex
+     * Created on 11/10/2020
+     * 
+     * @param menuOption
+     */
     public static void menuSelection(int menuOption)
     {
         
-        switch(menuOption) 
+        switch(menuOption) // initiation of switch menu, accepts menuOption as the parameter (the integer that controls it's operation)
         {
-            case 1:
-            randy = new Random();
-            int num = randy.nextInt(2);
+            case 1: // if 1 is entered into the input dialog box by the user...
+            randy = new Random(); // creates a new random object named "randy"
+            int num = randy.nextInt(2); // the random object picks a random number between 0 and 1, making the cap of integers 2
     
-            if(num == 0)
+            if(num == 0) // if the number generator generates 0, the spider encounter method is called from the Encounters class
             {
-                int remPlayerHealth = spiderEncounter.spiderEncounter(player.getPlayerHealth()); // after 3 encounters, the boss is triggered.
-                player.setPlayerHealth(remPlayerHealth);
+                int remPlayerHealth = spiderEncounter.spiderEncounter(player.getPlayerHealth()); // after 3 encounters (any kind), the boss is triggered
+                player.setPlayerHealth(remPlayerHealth); // the player's health is passed around a lot here, but it is necessary to carry the math over to the driver
             }
-            else
+            else // if 1 is generated instead of 0, then the skeleton encounter method is called
             {
-                int remPlayerHealth = skeletonEncounter.skeletonEncounter(player.getPlayerHealth());
-                player.setPlayerHealth(remPlayerHealth);
+                int remPlayerHealth = skeletonEncounter.skeletonEncounter(player.getPlayerHealth()); // calls skeleton encounter method, preps it for player health carry over
+                player.setPlayerHealth(remPlayerHealth); // same as spider method, the player's health is passed around here as well in order to carry over the information to the driver.
             } 
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(null, player.showInventory(), "~INVENTORY~", JOptionPane.PLAIN_MESSAGE); 
-                JOptionPane.showMessageDialog(null, "Your total damage is " + player.getTotalDamage() + ".");
-                break;
-            case 0:
-                goodbyeExit();
-                break;
-            default:
-                error();
-                break;
+                break; // breaks the case afterwards to bring the player back to the main menu
+            case 2: // if 2 is entered into the input dialog box by the user...
+                JOptionPane.showMessageDialog(null, player.showInventory(), "~INVENTORY~", JOptionPane.PLAIN_MESSAGE); // the player's inventory is displayed via calling the array list
+                JOptionPane.showMessageDialog(null, "Your total damage is " + player.getTotalDamage() + "."); // displays a message after viewing the inventory that shows the player's total damage
+                break; // breaks the case afterwards to bring the player back to the main menu
+            case 0: // if 0 is entered into the input dialog box by the user...
+                goodbyeExit(); // the goodbye method is called, which exits the program
+                break; // breaks the case afterwards
+            default: // if anything other than 1, 2, or 0 is entered into the input dialog box by the user...
+                error(); // the error method is called and displays an error message to the user, who then is returned to the main menu
+                break; // breaks the case afterwards to bring the player back to the main menu
         }
 
     }
 
+
+    /**
+     * This method is called when the player exits the program on their own behalf, therefore
+     * presenting them with this goodbye prompt.
+     * 
+     * Created by Samuel Pinnex, Levi Walker
+     * Created on 11/15/2020
+     */
     public static void goodbyeExit()
     {
         JOptionPane.showMessageDialog(null, "Until next time, Thomas...");
     }
 
 
+    /**
+     * This method is called when the player enters in an incorrect input. This method prompts the player
+     * with the error message shown below, and then redirects them to the main menu.
+     * 
+     * Created by Levi Walker, Samuel Pinnex
+     * Created on 11/15/2020
+     */
     public static void error()
     {
         JOptionPane.showMessageDialog(null, "Invalid input from player. Please retry.", "Try again, Thomas.", JOptionPane.ERROR_MESSAGE);
