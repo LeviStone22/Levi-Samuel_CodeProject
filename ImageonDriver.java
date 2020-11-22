@@ -1,7 +1,17 @@
 import javax.swing.JOptionPane;
 import java.util.Random;
 
-// ask Erin how to change the health during battle (in the toString for spider/skeleton)
+/**
+* ---------------------------------------------------------------------------
+* File name: ImageonDriver.java
+* Project name: LS_Code
+* ---------------------------------------------------------------------------
+* Creator's name and email: Levi Walker, walkerls@etsu.edu
+                            Samuel Pinnex, pinnexs@etsu.edu
+* Course: CSCI 1250-900
+* Creation Date: November 12, 2020
+* ---------------------------------------------------------------------------
+**/
 
 public class ImageonDriver 
 {
