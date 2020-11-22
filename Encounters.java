@@ -215,7 +215,7 @@ public class Encounters // move all values to the constructor, keep all declarat
     {
         skeletonHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 6 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 10 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + ".");
 
         if (remainingHealth <= 0)
         {
@@ -227,7 +227,7 @@ public class Encounters // move all values to the constructor, keep all declarat
     {
         spiderHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + ".");
 
         if (remainingHealth <= 0)
         {
@@ -239,7 +239,7 @@ public class Encounters // move all values to the constructor, keep all declarat
     {
         bossHealthDrop(); // if using the toString, use spiderHealth -= playerDMG, then the same for playerHealth
         JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + "."); // IF WE ATTACK FIRST, THE FLEE OPTION DOES NOT WORK <<<<<<<<<<<<<<<<<<<<<
+        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 14 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + ".");
 
         if (remainingHealth <= 0)
         {
@@ -318,7 +318,7 @@ public class Encounters // move all values to the constructor, keep all declarat
            bossNum++;
         }
 
-        if(bossNum == 3)
+        if(bossNum == 2)
         {
             bossEncounter(playerHealth);
         }
@@ -326,4 +326,4 @@ public class Encounters // move all values to the constructor, keep all declarat
         return bossNum;
     }
     
-}
+} // end of Encounters.java

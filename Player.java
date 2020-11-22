@@ -157,4 +157,4 @@ public class Player
         this.playerHealth = playerHealth;       // assigns the playerHealth variable to itself using the this keyword
     }
 
-}
+} // end of Item.java

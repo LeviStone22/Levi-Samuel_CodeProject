@@ -155,4 +155,4 @@ public class Item
         return msg; // returns the message wherever it is needed in the program
     }
 
-}
+} // end of Item.java

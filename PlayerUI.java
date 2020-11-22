@@ -67,6 +67,6 @@ public class PlayerUI
     }
 
 
-}
+} // end of PlayerUI.java
 
 
