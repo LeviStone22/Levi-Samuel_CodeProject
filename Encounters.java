@@ -26,7 +26,7 @@ public class Encounters
     private int remainingHealth; // declares remainingHealth as an int type variable
     private int remainingPlayerHealth; // declares remainingPlayerHealth as an int type variable
     private int playerDMG; // declares playerDMG as an int type variable
-    private int playerHealth;
+    private int playerHealth; // declares playerHealth as an int type variable
 
     private int spiderDMG; // declares spiderDMG as an int type variable
     private int spiderHealth; // declares spiderHealth as an int type variable
@@ -57,7 +57,7 @@ public class Encounters
         remainingHealth = 0; // defines remainingHealth as 0
         remainingPlayerHealth = 0; // defines remainingPlayerHealth as 0
         playerDMG = 16; // defines playerDMG as 16
-        playerHealth = 100;
+        playerHealth = 100; // defines playerHealth as 100
     }
 
 
