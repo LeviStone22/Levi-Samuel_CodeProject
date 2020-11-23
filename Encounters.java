@@ -370,7 +370,7 @@ public class Encounters
         
         if (remainingHealth <= 0)       // this if-statement is used to display the victory message when the dragon is killed
         {
-            JOptionPane.showMessageDialog(null, "Thomas has slain the treasure dragon!\nThomas has triumphed over his Imageon.");   // this is the victory message that displays when the dragon
+            JOptionPane.showMessageDialog(null, "The treasure dragon has been slain!\nThomas has triumphed over his Imageon.");   // this is the victory message that displays when the dragon
             JOptionPane.showMessageDialog(null, "Until next time, Thomas Stone...");       // this is the message that displays before exiting the program
 
             System.exit(0); // exits the program
