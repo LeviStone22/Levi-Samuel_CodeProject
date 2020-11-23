@@ -245,147 +245,256 @@ public class Encounters
     }
 
 
+
+    /**
+     * This is the spiderToString() method that is used to display a specific message to the user when the spiderEncounter() method is called
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/13/2020
+     * @return
+     */
     public String spiderToString()
     {
-        String encounterMSG = "";
+        String encounterMSG = "";       // assigns the encounterMSG variable to an empty String
 
         encounterMSG += "================ Dungeon Spider ================\n";
-        encounterMSG += "\nSpider HP: " + spiderHealth + "\n";
+        encounterMSG += "\nSpider HP: " + spiderHealth + "\n";      // calls for the spiderHealth variable to be displayed in the middle of the message
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
         encounterMSG += "\t2. Flee...\n";
 
-        return encounterMSG;
+        return encounterMSG;        // returns the encounterMSG
     }
 
+
+     /**
+     * This is the skeletonrToString() method that is used to display a specific message to the user when the skeletonEncounter() method is called
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/13/2020
+     * @return
+     */
     public String skeletonToString()
     {
-        String encounterMSG = "";
+        String encounterMSG = "";        // assigns the encounterMSG variable to an empty String
 
         encounterMSG += "================ Wretched Skeleton ================\n";
-        encounterMSG += "\nSkeleton HP: " + skeletonHealth + "\n";
+        encounterMSG += "\nSkeleton HP: " + skeletonHealth + "\n";  // calls for the skeletonHealth variable to be displayed in the middle of the message
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
         encounterMSG += "\t2. Flee...\n";
 
-        return encounterMSG;
+        return encounterMSG;            // returns the encounterMSG
     }
 
+
+     /**
+     * This is the bossToString() method that is used to display a specific message to the user when the bossEncounter() method is called
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/13/2020
+     * @return
+     */
     public String bossToString()
     {
-        String encounterMSG = "";
+        String encounterMSG = "";           // assigns the encounterMSG variable to an empty String
 
         encounterMSG += "================ Treasure Dragon ================\n";
-        encounterMSG += "\nDragon HP: " + bossHealth + "\n";
+        encounterMSG += "\nDragon HP: " + bossHealth + "\n";        // calls for the bossHealth variable to be displayed in the middle of the message
         encounterMSG += "\n\tWhat would you like to do?\n"; 
         encounterMSG += "\t1. Attack!\n";
         // encounterMSG += "\t2. Drink a health potion\n";
         encounterMSG += "\t2. Flee...\n";
 
-        return encounterMSG;
+        return encounterMSG;         // returns the encounterMSG
     }
 
     
+
+    /**
+     * This is the skeletonHasBeenAttacked() method that displays not only the remaining monster's health, but the player's health as well
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     */
     public void skeletonHasBeenAttacked(int playerHealth)
     {
-        skeletonHealthDrop();
-        JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 7 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + ".");
+        skeletonHealthDrop();       // calls the skeletonHealthDrop() method that does the calculations for the remaining skeletonHealth
+        JOptionPane.showMessageDialog(null, "You attack the skeleton and it does 16 damage!\nThe skeleton's health is now " + remainingHealth + ".");       // this message displays and calls for the remainingHealth variable to be displayed
+        JOptionPane.showMessageDialog(null, "The skeleton attacks you and deals 7 damage!\nYour health drops to " + playerSkeletonHealthDrop(playerHealth) + ".");  // this message displays the player's health and calls the playerSkeletonHealthDrop() method to calculate the health
 
-        if (remainingHealth <= 0)
+        if (remainingHealth <= 0)   // this if-statement is used to display the victory message when the monster's health hits 0
         {
-            JOptionPane.showMessageDialog(null, "Thomas has defeated the wretched skeleton!");
+            JOptionPane.showMessageDialog(null, "Thomas has defeated the wretched skeleton!");      // this is the victory message that displays when the monster is defeated
         }
     }
 
+
+     /**
+     * This is the spiderHasBeenAttacked() method that displays not only the remaining monster's health, but the player's health as well
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     */
     public void spiderHasBeenAttacked(int playerHealth)
     {
-        spiderHealthDrop();
-        JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + ".");
+        spiderHealthDrop();     // calls the spiderHealthDrop() method that does the calculations for the remaining spiderHealth
+        JOptionPane.showMessageDialog(null, "You attack the spider and it does 16 damage!\nThe spider's health is now " + remainingHealth + ".");        // this message displays and calls for the remainingHealth variable to be displayed
+        JOptionPane.showMessageDialog(null, "The spider attacks you and deals 6 damage!\nYour health drops to " + playerSpiderHealthDrop(playerHealth) + ".");      // this message displays the player's health and calls the playerSpiderHealthDrop() method to calculate the health
 
-        if (remainingHealth <= 0)
+        if (remainingHealth <= 0)       // this if-statement is used to display the victory message when the monster's health hits 0
         {
-            JOptionPane.showMessageDialog(null, "Thomas has slain the dungeon spider!");
+            JOptionPane.showMessageDialog(null, "Thomas has slain the dungeon spider!");        // this is the victory message that displays when the monster is defeated 
         }
     }
 
+
+    /**
+     * This is the bossHasBeenAttacked() method that displays not only the remaining monster's health, but the player's health as well
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     */
     public void bossHasBeenAttacked(int playerHealth)
     {
-        bossHealthDrop();
-        JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + "."); 
-        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 10 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + ".");
+        bossHealthDrop();        // calls the bossHealthDrop() method that does the calculations for the remaining bossHealth
+        JOptionPane.showMessageDialog(null, "You attack the mighty dragon and it does 16 damage!\nThe dragon's health is now " + remainingHealth + ".");     // this message displays and calls for the remainingHealth variable to be displayed
+        JOptionPane.showMessageDialog(null, "The dragon attacks you and deals a whopping 10 damage!\nYour health drops to " + playerBossHealthDrop(playerHealth) + ".");       // this message displays the player's health and calls the playerBossHealthDrop() method to calculate the health
 
-        if (remainingHealth <= 0)
+
+        
+        if (remainingHealth <= 0)       // this if-statement is used to display the victory message when the dragon is killed
         {
-            JOptionPane.showMessageDialog(null, "Thomas has slain the treasure dragon!\nThomas has triumphed over his Imageon.");
-            JOptionPane.showMessageDialog(null, "Until next time, Thomas Stone...");
+            JOptionPane.showMessageDialog(null, "Thomas has slain the treasure dragon!\nThomas has triumphed over his Imageon.");   // this is the victory message that displays when the dragon
+            JOptionPane.showMessageDialog(null, "Until next time, Thomas Stone...");       // this is the message that displays before exiting the program
 
             System.exit(0); // exits the program
         }
     }
 
+
+    /**
+     * This is the playerSpiderHealthDrop() method that does the calculations for the player health in the spiderEncounter and increments the health
+     * 
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     * @return
+     */
     public int playerSpiderHealthDrop(int playerHealth)
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)  // this for loop is used to increment the health
         {
-           remainingPlayerHealth = this.playerHealth -= spiderDMG;
+           remainingPlayerHealth = this.playerHealth -= spiderDMG;      // this is the calculation made each time the remainingPlayerHealth is incremented
         }
 
-        return remainingPlayerHealth;
+        return remainingPlayerHealth;       // returns the remainingPlayerHealth variable
     }
 
+
+    /**
+     * This is the playerSkeletonHealthDrop() method that does the calculations for the player health in the skeletonEncounter and increments the health
+     * 
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     * @return
+     */
     public int playerSkeletonHealthDrop(int playerHealth)
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)   // this for loop is used to increment the health
         {
-           remainingPlayerHealth = this.playerHealth -= skeletonDMG;
+           remainingPlayerHealth = this.playerHealth -= skeletonDMG;        // this is the calculation made each time the remainingPlayerHealth is incremented
         }
 
-        return remainingPlayerHealth;
+        return remainingPlayerHealth;       // returns the remainingPlayerHealth variable
     }
 
+
+
+     /**
+     * This is the playerBossHealthDrop() method that does the calculations for the player health in the bossEncounter and increments the health
+     * 
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param playerHealth
+     * @return
+     */
     public int playerBossHealthDrop(int playerHealth)
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)       // this for loop is used to increment the health
         {
-           remainingPlayerHealth = this.playerHealth -= bossDMG;
+           remainingPlayerHealth = this.playerHealth -= bossDMG;         // this is the calculation made each time the remainingPlayerHealth is incremented
         }
 
-        return remainingPlayerHealth;
+        return remainingPlayerHealth;       // returns the remainingPlayerHealth variable
     }
 
+
+
+    /**
+     * This is the skeletonHealthDrop() method that does the calculations for the skeleton health in the skeletonEncounter and increments the health
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @return
+     */
     public int skeletonHealthDrop()
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)   // this for loop is used to increment the health
         {
-           remainingHealth = skeletonHealth -= playerDMG;
+           remainingHealth = skeletonHealth -= playerDMG;       // this is the calculation made each time the remainingHealth is incremented
         }
 
-        return remainingHealth;
+        return remainingHealth;      // returns the remainingPlayerHealth variable
     }
+    
 
+
+    
+    /**
+     * This is the spiderHealthDrop() method that does the calculations for the spider health in the spiderEncounter and increments the health
+     * 
+     * Created By: Samuel Pinnex, Levi walker
+     * Date Created: 11/12/2020
+     * @return
+     */
     public int spiderHealthDrop()
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)      // this for loop is used to increment the health
         {
-           remainingHealth = spiderHealth -= playerDMG;
+           remainingHealth = spiderHealth -= playerDMG;     // this is the calculation made each time the remainingHealth is incremented
         }
 
-        return remainingHealth;
+        return remainingHealth;         // returns the remainingPlayerHealth variable
     }
 
+
+    /**
+     * This is the bossHealthDrop() method that does the calculations for the spider health in the spiderEncounter and increments the health
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @return
+     */
     public int bossHealthDrop()
     {
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 1; i++)      // this for loop is used to increment the health
         {
-           remainingHealth = bossHealth -= playerDMG;
+           remainingHealth = bossHealth -= playerDMG;        // this is the calculation made each time the remainingHealth is incremented
         }
 
-        return remainingHealth;
+        return remainingHealth;     // returns the remainingPlayerHealth variable
     }
+    
 
 
     /**

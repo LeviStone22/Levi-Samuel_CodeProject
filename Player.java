@@ -105,9 +105,10 @@ public class Player
      * Created By: Samuel Pinnex
      * Date Created: 11/12/2020
      */
-    public void useHealthPotion()
+    public int useHealthPotion(int playerHealth)
     {
-        playerHealth += paction.playerHealing();        // assigns the playerHealth variable to the paction variable that is calling the playerHealing() method
+        this.playerHealth += paction.playerHealing(playerHealth);        // assigns the playerHealth variable to the paction variable that is calling the playerHealing() method
+        return playerHealth;
     }
     
 
@@ -157,4 +158,4 @@ public class Player
         this.playerHealth = playerHealth;       // assigns the playerHealth variable to itself using the this keyword
     }
 
-} // end of Item.java
+} // end of Player.java

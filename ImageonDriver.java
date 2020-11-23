@@ -13,13 +13,33 @@ import java.util.Random;
 * ---------------------------------------------------------------------------
 **/
 
+
+
+/**
+ * This is the ImageonDriver class that is used to drive the entire program and holds the switch-statement with the different menu options 
+ * for the player's interaction with the game. 
+ * 
+ * 
+ * Created by Samuel Pinnex, Levi Walker
+ * Created on 11/12/2020
+ */
 public class ImageonDriver 
 {
-    private static Encounters spiderEncounter = new Encounters();
-    private static Encounters skeletonEncounter = new Encounters();
-    private static Player player = new Player();
-    private static Random randy;
+    private static Encounters spiderEncounter = new Encounters();       // creates the new Encounter object by the name of spiderEncounter
+    private static Encounters skeletonEncounter = new Encounters();     // creates the new Encounter object by the name of skeletonEncounter 
+    private static Player player = new Player();        // creates new Player object to be used in the program, this is the only one
+    private static Random randy;        // creates the new random generator object by the name of randy
 
+
+
+    /**
+     * This is the main method used in the Driver and holds the introductory messages for the user to introduce them to the program and 
+     * provides lore and an immersive introduction to the game
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @param args
+     */
     public static void main(String[] args) 
     {
         JOptionPane.showMessageDialog(null, "Welcome to Imageon. \n\nA text based adventure game by Levi Walker and Samuel Pinnex.");
@@ -28,29 +48,40 @@ public class ImageonDriver
         
         JOptionPane.showMessageDialog(null, "While drinking a Capri Sun, Thomas looked at the ground and picked up a stick. \n\nThis stick would be his sword, and his beverage his potion. \n\nThomas closed his eyes and took a deep breath. When he opened them, he was inside his Imageon.");
 
-        int menuOption = 0;
-        do
+        int menuOption = 0;     // assigns the menuOption variable to a empty String
+        do      // this do-while statement is used to end the program if the menu option "0" is chosen
         {
-            menuOption = displayMenu();
-            menuSelection(menuOption);
+            menuOption = displayMenu();     // calls the displayMenu() method and assigns the menuOption to it
+            menuSelection(menuOption);      // calls the menuSelection() method with the menuOption inside of its parameters
         } while (menuOption != 0);
 
-        player.addWeapon();
-        player.addPotion();
+        player.addWeapon();     // calls the addWeapon() method using the player object, this gives the player their weapon to deal damage with
+        player.addPotion();     // calls the addPotion() method using the player object, this gives the player their potion to heal with
 
         System.exit(0); // exits the program
     }
 
+
+
+    /**
+     * This is the displayMenu() that holds the display menu that shows the multiple options the player can choose from, all of which provide 
+     * a special purpose of gameplay for the user
+     * 
+     * Created By: Samuel Pinnex, Levi Walker
+     * Date Created: 11/12/2020
+     * @return
+     */
     public static int displayMenu() 
     {
-        String menu = "";  
-        menu += "============= What will you do? ==============\n";
+        String menu = "";           // assigns the menu variable to an empty String
+        menu += "============= What will you do? ==============\n";     
         menu += "1. Move to next room\n";
         menu += "2. View Inventory\n";
+        menu += "3. Drink Health Potion\n";
         menu += "0. Leave the Imageon, you coward";
 
-        String input = JOptionPane.showInputDialog(menu); 
-        return Integer.parseInt(input);
+        String input = JOptionPane.showInputDialog(menu);       // assigns the input to the JOptionPane containing the String menu
+        return Integer.parseInt(input);             // return Integer.parseInt(input)
 
     }
 
@@ -92,6 +123,11 @@ public class ImageonDriver
                 JOptionPane.showMessageDialog(null, player.showInventory(), "~INVENTORY~", JOptionPane.PLAIN_MESSAGE); // the player's inventory is displayed via calling the array list
                 JOptionPane.showMessageDialog(null, "Your total damage is " + player.getTotalDamage() + "."); // displays a message after viewing the inventory that shows the player's total damage
                 break; // breaks the case afterwards to bring the player back to the main menu
+            case 3:
+               int remAPlayerHealth = player.useHealthPotion(48);
+               player.setPlayerHealth(remAPlayerHealth);
+                JOptionPane.showMessageDialog(null, "Thomas drinks the health potion, increasing his health!");
+                break;
             case 0: // if 0 is entered into the input dialog box by the user...
                 goodbyeExit(); // the goodbye method is called, which exits the program
                 break; // breaks the case afterwards
