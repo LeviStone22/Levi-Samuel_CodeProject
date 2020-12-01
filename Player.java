@@ -136,7 +136,7 @@ public class Player
     /**
      * This is the getPlayerHealth() method that is used to get the specific value that is associated with the playerHealth variable
      * 
-     * Created By; Samuel Pinnex
+     * Created By: Samuel Pinnex
      * Date Created: 11/12/2020
      * @return
      */
